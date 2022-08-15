@@ -1,0 +1,29 @@
+.header {
+  background: var(--gray-700);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.header>img {
+  width: 1.375rem;
+  height: 2rem;
+}
+
+.header>div {
+  display: flex;
+  margin-left: 0.5rem;
+}
+
+.to {
+  color: var(--blue);
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.do {
+  color: var(--purple);
+  font-weight: bold;
+  font-size: 2rem;
+}
