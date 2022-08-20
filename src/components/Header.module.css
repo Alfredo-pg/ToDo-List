@@ -7,23 +7,24 @@
 }
 
 .header>img {
-  width: 1.375rem;
-  height: 2rem;
+  width: 2rem;
+  cursor: pointer;
 }
 
 .header>div {
+  cursor: pointer;
   display: flex;
-  margin-left: 0.5rem;
+  margin-left: 1rem;
 }
 
 .to {
   color: var(--blue);
-  font-weight: bold;
-  font-size: 2rem;
+  font-weight: 700;
+  font-size: 3rem;
 }
 
 .do {
-  color: var(--purple);
-  font-weight: bold;
-  font-size: 2rem;
+  color: var(--purple-dark);
+  font-weight: 700;
+  font-size: 3rem;
 }

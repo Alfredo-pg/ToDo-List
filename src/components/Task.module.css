@@ -1,0 +1,26 @@
+.task {
+  display: flex;
+  align-items: flex-start;
+  justify-content: start;
+
+  background: var(--gray-500);
+  color: var(--gray-100);
+  padding: 1rem;
+}
+
+.taskBox {
+  line-height: 1.6;
+}
+
+.trash {
+  background: transparent;
+  border: none;
+  color: var(--gray-300);
+
+  cursor: pointer;
+  transition: color 0.1s;
+}
+
+.trash:hover {
+  color: var(--danger);
+}
