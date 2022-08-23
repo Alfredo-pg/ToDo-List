@@ -1,4 +1,4 @@
-import { ClipboardText, Trash } from 'phosphor-react'
+import { ClipboardText } from 'phosphor-react'
 import { Taks } from './Task'
 
 import styles from './TaskList.module.css'

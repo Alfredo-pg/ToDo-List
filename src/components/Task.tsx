@@ -5,7 +5,10 @@ import styles from './Task.module.css'
 export function Taks() {
   return(
     <div className={styles.task}>
-      <input type="checkbox"/>
+      <div className={styles.checkBox}>
+        <input id='checkboxid' type="checkbox"/>
+        <label htmlFor="checkboxid"></label>
+      </div>
 
       <div className={styles.taskBox}>
         <p>
