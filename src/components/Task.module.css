@@ -6,6 +6,8 @@
   color: var(--gray-100);
   padding: 1rem;
   border-radius: 8px;
+
+  margin-bottom: 0.75rem;
 }
 
 .checkBox > input {
@@ -19,6 +21,7 @@
   border-radius: 50%;
   border: 2px solid var(--blue);
   display: inline-block;
+  cursor: pointer;
 
   transition: background-color 0.2s;
 }

@@ -1,7 +1,5 @@
 import styles from './App.module.css'
-import { CreateTask } from './components/CreateTask'
 import { Header } from './components/Header'
-import { Taks } from './components/Task'
 import { TaksList } from './components/TaskList'
 
 import './global.css'
@@ -12,7 +10,6 @@ function App() {
       <Header />
 
       <div className={styles.wrapper}>
-        <CreateTask />
         <TaksList />
       </div>
     </div>

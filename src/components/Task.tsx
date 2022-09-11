@@ -2,7 +2,11 @@ import { Trash } from 'phosphor-react'
 
 import styles from './Task.module.css'
 
-export function Taks() {
+interface TaskProps {
+  content: string
+}
+
+export function Taks({content}: TaskProps) {
   return(
     <div className={styles.task}>
       <div className={styles.checkBox}>
@@ -12,7 +16,7 @@ export function Taks() {
 
       <div className={styles.taskBox}>
         <p>
-          Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.
+          {content}
         </p>
       </div>
 
