@@ -1,24 +1,46 @@
-import { ClipboardText, PlusCircle } from 'phosphor-react'
-import { Taks } from './Task'
+import { PlusCircle } from 'phosphor-react'
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react'
+import { EmptyList } from './EmptyList'
+import { Task } from './Task'
 
 import styles from './TaskList.module.css'
 
 export function TaksList() {
-  function createTask(taskText: string) {
-    
+  const [tasks, setTasks] = useState(Array<string>)
+
+  const [newTaskText, setNewTaskText] = useState('')
+
+  function handleCreateTask(event: FormEvent) {
+    event.preventDefault()
+
+    setTasks([...tasks, newTaskText])
+    setNewTaskText('')
+  }
+
+  function handleNewTaskChange(event: ChangeEvent<HTMLTextAreaElement>) {
+    event.target.setCustomValidity('')
+    setNewTaskText(event.target.value)
+  }
+
+  function handleNewtTaskInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
+    event.target.setCustomValidity('Este campo é obrigatório!')
   }
 
   return (
     <div>
-      <form  className={styles.createTask}>
+      <form onSubmit={handleCreateTask} className={styles.createTask}>
         <textarea
           name="text"
           placeholder='Adicione uma nova tarefa'
+          value={newTaskText}
+          onChange={handleNewTaskChange}
+          onInvalid={handleNewtTaskInvalid}
+          required
         />
 
         <button>
           Criar
-          <PlusCircle size={24}/>
+          <PlusCircle size={24} />
         </button>
       </form>
 
@@ -38,11 +60,17 @@ export function TaksList() {
         </p>
       </header>
 
-      <main className={styles.tasklist}>
-        <ClipboardText size={56}/>
-        <strong>Você ainda não tem tarefas cadastradas</strong>
-        <span>Crie tarefas e organize seus itens a fazer</span>
-      </main>
+      {tasks.length === 0 
+      ? <EmptyList />
+      : tasks.map(task =>{
+        return (
+          <Task
+            key={task}
+            content={task}
+          />
+        )
+      })}
+
     </div>
   )
 }

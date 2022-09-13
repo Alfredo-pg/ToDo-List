@@ -6,7 +6,7 @@ interface TaskProps {
   content: string
 }
 
-export function Taks({content}: TaskProps) {
+export function Task({content}: TaskProps) {
   return(
     <div className={styles.task}>
       <div className={styles.checkBox}>
