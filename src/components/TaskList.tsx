@@ -5,15 +5,25 @@ import { Task } from './Task'
 
 import styles from './TaskList.module.css'
 
+interface TasksList {
+  content: string,
+  isComplete: boolean
+}
+
 export function TaksList() {
-  const [tasks, setTasks] = useState(Array<string>)
+  const [tasks, setTasks] = useState<TasksList[]>([])
 
   const [newTaskText, setNewTaskText] = useState('')
 
   function handleCreateTask(event: FormEvent) {
     event.preventDefault()
 
-    setTasks([...tasks, newTaskText])
+    const newTask = {
+      content: newTaskText,
+      isComplete: false
+    }
+
+    setTasks([...tasks, newTask])
     setNewTaskText('')
   }
 
@@ -24,6 +34,42 @@ export function TaksList() {
 
   function handleNewtTaskInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity('Este campo é obrigatório!')
+  }
+
+  function completeTask(content: string) {
+    const completedTasks = tasks.map(task => {
+      if (task.content == content) {
+        return {
+          ...task,
+          isComplete: !task.isComplete
+        }
+      }
+
+      return task
+    })
+    
+    setTasks(completedTasks)
+  }
+
+  function countCompleteTasks() {
+    let count = 0
+
+    tasks.forEach(task => {
+      if (task.isComplete == true) {
+        count += 1
+      }
+    })
+    return count
+  }
+
+  const countCompletedTasks = countCompleteTasks()
+
+  function deleteTask(taskToDelete: string) {
+    const taskWithoutDeleteOne = tasks.filter(task =>{
+      return task.content !== taskToDelete
+    })
+
+    setTasks(taskWithoutDeleteOne)
   }
 
   return (
@@ -48,14 +94,14 @@ export function TaksList() {
         <p className={styles.taskCreatedNumber}>
           Tarefas criadas
           <span className={styles.spanNumber}>
-            0
+            {tasks.length}
           </span>
         </p>
 
         <p className={styles.taskCompletedNumber}>
           Concluídas
           <span className={styles.spanNumber}>
-            0
+            {countCompletedTasks} de {tasks.length}
           </span>
         </p>
       </header>
@@ -65,12 +111,14 @@ export function TaksList() {
       : tasks.map(task =>{
         return (
           <Task
-            key={task}
-            content={task}
+            key={task.content}
+            content={task.content}
+            isComplete={task.isComplete}
+            onDeleteTask={deleteTask}
+            onCompleteTask={completeTask}
           />
         )
       })}
-
     </div>
   )
 }

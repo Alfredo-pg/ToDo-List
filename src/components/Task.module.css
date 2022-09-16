@@ -51,6 +51,11 @@
   margin-right: 0.75rem;
 }
 
+.taskTrue {
+  text-decoration: line-through;
+  color: var(--gray-300);
+}
+
 .trash {
   background: transparent;
   border: none;
